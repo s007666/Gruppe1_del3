@@ -4,13 +4,12 @@ package com.company;
 public class Players {
 
 
-    private String name;
-    private int totalPoints;
+    private final String name;
+
 
 
     public Players(String name) {
         this.name = name;
-
 
     }
 
@@ -19,12 +18,7 @@ public class Players {
         return name;
 
     }
-    int getTotalPoints(){
-        return totalPoints;
+
     }
 
-    void setTotalPoints(int points){
-        totalPoints += points;
-    }
-}
 
