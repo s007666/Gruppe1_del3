@@ -3,17 +3,17 @@ package com.company;
 
 public class Account {
 
-    private int Balance;
+    int Balance;
     int Tower = 250;
-    int Crater = 100;
-    int PalaceGates = 100;
-    int ColdDesert = 20;
+    int Crater = -100;
+    int Palace_Gates = 100;
+    int Cold_Desert = -20;
     int WalledCity = 180;
     int Monastery = 0;
-    int BlackCave = 70;
+    int BlackCave = -70;
     int HutsInTheMountain = 60;
-    int TheWerewolfWall = 80;  //Spilleren får en ekstra tur.
-    int ThePit = 50;
+    int TheWerewolfWall = -80;  //Player gets an extra throw.
+    int ThePit = -50;
     int Goldmine = 650;
 
 
@@ -26,18 +26,18 @@ public class Account {
     }
 
     public int getCrater() {
-        return Balance - Crater;
+        return Balance + Crater;
     }
 
-    public int getPalaceGates() {
-        return Balance + PalaceGates;
+    public int getPalace_Gates() {
+        return Balance + Palace_Gates;
     }
 
-    public int getColdDesert() {
-        return Balance - ColdDesert ;
+    public int getCold_Desert() {
+        return Balance + Cold_Desert;
     }
 
-    public int getWalledCity() {
+    public int getWalled_City() {
         return Balance + WalledCity;
     }
 
@@ -45,32 +45,32 @@ public class Account {
         return Balance + Monastery;
     }
 
-    public int getBlackCave() {
-        return Balance - BlackCave;
+    public int getBlack_Cave() {
+        return Balance + BlackCave;
     }
 
-    public int getHutsInTheMountain() {
+    public int get_Huts_In_The_Mountain() {
         return Balance + HutsInTheMountain;
     }
 
-    public int getTheWerewolfWall() {
-        return Balance - TheWerewolfWall;
+    public int get_The_Were_wolf_Wall() {
+        return Balance + TheWerewolfWall;
     }
 
-    public int getThePit() {
-        return Balance - ThePit;
+    public int getThe_Pit() {
+        return Balance + ThePit;
     }
 
-    public int getGoldmine() {
+    public int getGold_mine() {
         return Balance + Goldmine;
     }
-    void setTotalPoints(int points){
-        Balance += points;
 
+    public int getBalance() {
+        return Balance;
     }
-   public int getTotalPoints(){
-       return Balance ;
 
+    public void setBalance(int balance) {
+        Balance = balance;
     }
 }
 
