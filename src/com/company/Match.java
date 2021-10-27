@@ -11,6 +11,7 @@ public class Match {
 
     void display() {
         System.out.println();
+        System.out.println("One of you will be the champ! Good luck");
         System.out.println("(1) New Game");
         System.out.println("(2) Play a round for player 1");
         System.out.println("(3) Play a round for player 2");
@@ -58,7 +59,7 @@ public class Match {
         int m;
 
         System.out.printf("%s rolled %d and %d, "
-                        + "and scored %d points, ",
+                        + "and scored %d points. ",
                 S.getName(), FirstDiceRoll, SecondDiceRoll,
                 d, S.getName());
         System.out.println();
@@ -122,7 +123,7 @@ public class Match {
 
         if (d == 10) {
             m = B.get_The_Were_wolf_Wall();
-            System.out.printf("%s has landed The_Were_Wolf_Wall and therefore you lose %d points. " + "Your total value is now on %d points", S.getName(), 80, m, ", but you get an extra throw!");
+            System.out.printf("%s has landed The_Were_Wolf_Wall and therefore you lose %d points. " + "Your total value is now on %d points, but you get an extra throw!", S.getName(), 80, m);
             System.out.println();
             B.setBalance(m);
             this.The_Challenge_Round(S, B);

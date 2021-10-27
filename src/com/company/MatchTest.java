@@ -7,12 +7,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MatchTest {
 
+
     @org.junit.jupiter.api.Test
     void The_Challenge_Round() {
+        int FirstDiceRoll = 2;
+        int SecondDiceRoll = 4;
+        int d = FirstDiceRoll + SecondDiceRoll;
+
+        int result = d;
         double expectedResult = 6;
-        int gen = 2;
-        int gen1 = 4;
-        int result = gen + gen1;
         assertEquals(expectedResult, result);
     }
 
