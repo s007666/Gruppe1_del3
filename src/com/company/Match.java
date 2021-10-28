@@ -8,7 +8,7 @@ public class Match {
     Players S1;
     Players S2;
 
-
+// Tekst vises ved spillets start - en række muligheder spillerne kan vælge --> kører på main
     void display() {
         System.out.println();
         System.out.println("One of you will be the champ! Good luck");
