@@ -2,7 +2,7 @@ package com.company;
 
 
 public class Account {
-//Integer værdier for Pengebeholdning fra kranspec.
+// Definitionen af integer værdier for Pengebeholdning fra kravspec.
     int Balance;
     int Tower = 250;
     int Crater = -100;
