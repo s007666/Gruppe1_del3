@@ -175,7 +175,7 @@ public class Match {
                 System.out.print("Option entered invalid, please enter a number from 1 to 4: ");
             }
 
-            if (Selected == 4) {
+            if (Selected == 4) {  //Hvis spilleren vælger nummer 4, som vi kan se på display, så går spilleren ud af spillet
                 System.out.println("The game is exited");
                 break;
             }
