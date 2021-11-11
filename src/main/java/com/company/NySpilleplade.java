@@ -208,6 +208,39 @@ public class NySpilleplade {
         gui.getFields()[23].setDescription("Du landede på strandpromenaden");
 
         gui.setDice(1, 2);
+
+
+
+//Opretter spiller og start balance på 2000
+        //GUI_Player player = new GUI_Player("Junior", 2000)
+        GUI_Car car1 = new GUI_Car(Color.BLUE, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.CHECKERED);
+        GUI_Car car2 = new GUI_Car(Color.RED, Color.WHITE, GUI_Car.Type.RACECAR, GUI_Car.Pattern.CHECKERED);
+        GUI_Car car3 = new GUI_Car(Color.GREEN, Color.ORANGE, GUI_Car.Type.UFO, GUI_Car.Pattern.CHECKERED);
+        GUI_Player Junior = new GUI_Player("Junior", 2000, car1);
+        GUI_Player Matador = new GUI_Player("Matador", 2000, car2);
+        GUI_Player Jasmin = new GUI_Player("Jasmin", 2000, car3);
+        // Tilføjer ham til spillet
+        gui.addPlayer(Junior);
+        gui.addPlayer(Matador);
+        gui.addPlayer(Jasmin);
+
+        // Henter feltet
+        GUI_Field field = gui.getFields()[0];
+
+// Sæt bilen til at blive vist
+        field.setCar(Junior, true);
+
+        field.setCar(Matador, true);
+
+        field.setCar(Jasmin, true);
+
+        gui.setDie(6); // Viser én terning med værdien 6
+
+        gui.setDice(1, 2); // Viser to terninger med værdierne 1 og 2
+
+
+
+
     }
 }
 
