@@ -7,6 +7,7 @@ import gui_main.GUI;
 import java.awt.*;
 import java.util.Random;
 
+
 public class NySpilleplade {
     public static void main(String[] args) {
         // Laver hvert felt svarende til spillepladen
@@ -233,22 +234,22 @@ public class NySpilleplade {
         field.setCar(Matador, true);
 
         field.setCar(Jasmin, true);
+        Dice dice = new Dice();
 
-        gui.setDie(6); // Viser én terning med værdien 6
-
-        gui.setDice(1, 2); // Viser to terninger med værdierne 1 og 2
-
-
-        while(true){
+        while (true) {
             // Tag i mod input fra brugeren
-            String choice = gui.getUserButtonPressed("Tag et valg", "Slå med én terning", "Slå med to terninger");
-            if( choice.equals("Slå med én terning") )
-                gui.setDie(6); // Vis en terning med værdien 6
-            if( choice.equals("Slå med to terninger") )
-                gui.setDice(1, 2); // Vis to terninger med værdierne 1 og 2
+            String choice = gui.getUserButtonPressed("Slå med terningen", "Slå med terningen", "Prøv lykken kort");
+            if (choice.equals("Slå med terningen"))
+                gui.setDie(dice.RollTheDices()); // Vis en terning
+            if(choice.equals("Prøv lykken kort"));
+            gui.displayChanceCard();
+
+            gui.setChanceCard("Modtag penge");
+            gui.setChanceCard("Betal penge");
 
 
-    }
+
+        }
 }}
 
 
