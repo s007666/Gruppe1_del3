@@ -1,10 +1,10 @@
 package com.company;
 import java.util.Random;
 
-public class Dice {
+public class Terning {
     public final static int Sides = 6;
 
-    int RollTheDices() {
+    int RollTheDice() {
         int x;
         Random Generator = new Random();
         x = Generator.nextInt(Sides) + 1;

@@ -1,11 +1,9 @@
 package com.company;
 
-import gui_codebehind.GUI_FieldFactory;
 import gui_fields.*;
 import gui_main.GUI;
 
 import java.awt.*;
-import java.util.Random;
 
 
 public class NySpilleplade {
@@ -208,7 +206,6 @@ public class NySpilleplade {
         gui.getFields()[23].setBackGroundColor(Color.CYAN);
         gui.getFields()[23].setDescription("Du landede på strandpromenaden");
 
-        gui.setDice(1, 2);
 
 
 
@@ -234,20 +231,18 @@ public class NySpilleplade {
         field.setCar(Matador, true);
 
         field.setCar(Jasmin, true);
-        Dice dice = new Dice();
+        Terning terning = new Terning();
 
         while (true) {
             // Tag i mod input fra brugeren
             String choice = gui.getUserButtonPressed("Slå med terningen", "Slå med terningen", "Prøv lykken kort");
             if (choice.equals("Slå med terningen"))
-                gui.setDie(dice.RollTheDices()); // Vis en terning
+                gui.setDie(terning.RollTheDice()); // Vis en terning
             if(choice.equals("Prøv lykken kort"));
             gui.displayChanceCard();
 
             gui.setChanceCard("Modtag penge");
             gui.setChanceCard("Betal penge");
-
-
 
         }
 }}
