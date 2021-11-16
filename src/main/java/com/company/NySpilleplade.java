@@ -227,11 +227,20 @@ public class NySpilleplade {
 
 // Sæt bilen til at blive vist
         field.setCar(Junior, true);
-
         field.setCar(Matador, true);
-
         field.setCar(Jasmin, true);
+
         Terning terning = new Terning();
+
+       // Rykker biler = Tilføjer og fjerner fra felterne
+        gui.getFields()[0].setCar(Junior, false); // Fjerner bilen fra felt 0
+        gui.getFields()[1].setCar(Junior, true); //Tilføjer igen til felt 1
+
+        gui.getFields()[0].setCar(Matador, false);
+        gui.getFields()[2].setCar(Matador, true);
+
+        gui.getFields()[0].setCar(Jasmin, false);
+        gui.getFields()[3].setCar(Jasmin, true);
 
         while (true) {
             // Tag i mod input fra brugeren
