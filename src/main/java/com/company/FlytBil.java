@@ -8,8 +8,8 @@ import java.lang.reflect.Field;
 
 public class FlytBil {
 
-    private GUI_Field field;
-    private GUI gui;
+    private final GUI_Field field;
+    private final GUI gui;
 
     public FlytBil(GUI gui, GUI_Field field) {
         this.gui = gui;

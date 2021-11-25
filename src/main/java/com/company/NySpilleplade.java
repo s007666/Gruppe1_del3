@@ -2,12 +2,10 @@ package com.company;
 
 import gui_fields.*;
 import gui_main.GUI;
-
 import java.awt.*;
 
 
 public class NySpilleplade {
-    private static GUI_Player[] spillere;
     //Index til tur
     private static int turSpillerIndex;
 
@@ -219,7 +217,7 @@ public class NySpilleplade {
         GUI_Player Junior = new GUI_Player("Junior", 18, car1);
         GUI_Player Matador = new GUI_Player("Matador", 18, car2);
         GUI_Player Jasmin = new GUI_Player("Jasmin", 18, car3);
-        spillere = new GUI_Player[]{Junior, Matador, Jasmin};
+        GUI_Player[] spillere = new GUI_Player[]{Junior, Matador, Jasmin};
         turSpillerIndex = 0;
         // Tilføjer ham til spillet
         gui.addPlayer(Junior);
@@ -248,7 +246,7 @@ public class NySpilleplade {
             String choice = gui.getUserButtonPressed("Slå med terningen", "Slå med terningen", "Prøv lykken kort");
             if (choice.equals("Slå med terningen")) {
                 int[] spillerPositioner = new int[3];
-                int ryk = terning.RollTheDice();
+                int ryk = terning.rollTheDice();
                 gui.setDie(ryk); // Vis en terning;
                 for (int i = 0; i < gui.getFields().length; i++) {
                     for (int j = 0; j < spillere.length; j++) {
@@ -267,11 +265,13 @@ public class NySpilleplade {
                 giv_næste_spiller_turen();
 
             }
-            if (choice.equals("Prøv lykken kort")) ;
-            gui.displayChanceCard();
 
-            gui.setChanceCard("Modtag penge");
-            gui.setChanceCard("Betal penge");
+            if (!choice.equals("Prøv lykken kort")) {
+                gui.displayChanceCard();
+
+                gui.setChanceCard("Modtag penge");
+                gui.setChanceCard("Betal penge");
+            }
 
         }
 
@@ -311,8 +311,9 @@ public class NySpilleplade {
     //Udregner sum/pris for at lande på felt
     private static void landetPå(GUI_Player spiller, GUI_Field felt) {
         if (felt.getClass() == GUI_Street.class) {
-            felt = (GUI_Street) felt;
+            felt = felt;
             spiller.setBalance(spiller.getBalance() - udregnPris(felt.getSubText()));
+
 
         }
     }

@@ -6,6 +6,12 @@
       <option name="DONT_REPORT_TRUE_ASSERT_STATEMENTS" value="false" />
       <option name="REPORT_CONSTANT_REFERENCE_VALUES" value="false" />
     </inspection_tool>
+    <inspection_tool class="EnhancedSwitchMigration" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myWarnOnlyOnExpressionConversion" value="true" />
+    </inspection_tool>
     <inspection_tool class="JUnit4AnnotatedMethodInJUnit3TestCase" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="NonAsciiCharacters" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="CHECK_FOR_NOT_ASCII_STRING_LITERAL" value="true" />
+    </inspection_tool>
   </profile>
 </component>
