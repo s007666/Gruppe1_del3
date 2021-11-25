@@ -7,6 +7,9 @@ import java.awt.*;
 
 
 public class NySpilleplade {
+    private static GUI_Player[] spillere;
+    private static int turSpillerIndex;
+
     public static void main(String[] args) {
         // Laver hvert felt svarende til spillepladen
         GUI_Field[] fields = {
@@ -38,6 +41,7 @@ public class NySpilleplade {
         };
 
         GUI gui = new GUI(fields);
+        FlytBil flytter = new FlytBil(gui, gui.getFields()[0]);
         //ændre beskrivelserne til hvert felt
         // start feltet
         gui.getFields()[0].setTitle("START");
@@ -207,16 +211,16 @@ public class NySpilleplade {
         gui.getFields()[23].setDescription("Du landede på strandpromenaden");
 
 
-
-
 //Opretter spiller og start balance på 2000
         //GUI_Player player = new GUI_Player("Junior", 2000)
         GUI_Car car1 = new GUI_Car(Color.BLUE, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.CHECKERED);
         GUI_Car car2 = new GUI_Car(Color.RED, Color.WHITE, GUI_Car.Type.RACECAR, GUI_Car.Pattern.CHECKERED);
         GUI_Car car3 = new GUI_Car(Color.GREEN, Color.ORANGE, GUI_Car.Type.UFO, GUI_Car.Pattern.CHECKERED);
-        GUI_Player Junior = new GUI_Player("Junior", 2000, car1);
-        GUI_Player Matador = new GUI_Player("Matador", 2000, car2);
-        GUI_Player Jasmin = new GUI_Player("Jasmin", 2000, car3);
+        GUI_Player Junior = new GUI_Player("Junior", 18, car1);
+        GUI_Player Matador = new GUI_Player("Matador", 18, car2);
+        GUI_Player Jasmin = new GUI_Player("Jasmin", 18, car3);
+        spillere = new GUI_Player[]{Junior, Matador, Jasmin};
+        turSpillerIndex = 0;
         // Tilføjer ham til spillet
         gui.addPlayer(Junior);
         gui.addPlayer(Matador);
@@ -232,30 +236,88 @@ public class NySpilleplade {
 
         Terning terning = new Terning();
 
-       // Rykker biler = Tilføjer og fjerner fra felterne
-        gui.getFields()[0].setCar(Junior, false); // Fjerner bilen fra felt 0
-        gui.getFields()[1].setCar(Junior, true); //Tilføjer igen til felt 1
+        // Rykker biler = Tilføjer og fjerner fra felterne
+        gui.getFields()[0].setCar(Junior, true);
 
-        gui.getFields()[0].setCar(Matador, false);
-        gui.getFields()[2].setCar(Matador, true);
+        gui.getFields()[0].setCar(Matador, true);
 
-        gui.getFields()[0].setCar(Jasmin, false);
-        gui.getFields()[3].setCar(Jasmin, true);
+        gui.getFields()[0].setCar(Jasmin, true);
 
         while (true) {
             // Tag i mod input fra brugeren
             String choice = gui.getUserButtonPressed("Slå med terningen", "Slå med terningen", "Prøv lykken kort");
-            if (choice.equals("Slå med terningen"))
-                gui.setDie(terning.RollTheDice()); // Vis en terning
-            if(choice.equals("Prøv lykken kort"));
+            if (choice.equals("Slå med terningen")) {
+                int[] spillerPositioner = new int[3];
+                int ryk = terning.RollTheDice();
+                gui.setDie(ryk); // Vis en terning;
+                for (int i = 0; i < gui.getFields().length; i++) {
+                    for (int j = 0; j < spillere.length; j++) {
+                        if (gui.getFields()[i].hasCar(spillere[j])) {
+                            spillerPositioner[j] = i;
+                        }
+                    }
+                    gui.getFields()[i].removeAllCars();
+                }
+                spillerPositioner[turSpillerIndex] = flytSpiller(spillerPositioner[turSpillerIndex], ryk);
+                for (int i = 0; i < spillere.length; i++) {
+                    gui.getFields()[spillerPositioner[i]].setCar(spillere[i], true);
+                }
+                landetPå(spillere[turSpillerIndex], gui.getFields()[spillerPositioner[turSpillerIndex]]);
+                giv_næste_spiller_turen();
+
+            }
+            if (choice.equals("Prøv lykken kort")) ;
             gui.displayChanceCard();
 
             gui.setChanceCard("Modtag penge");
             gui.setChanceCard("Betal penge");
 
         }
-}}
 
+    }
+
+    private static void giv_næste_spiller_turen() {
+        switch (turSpillerIndex) {
+            case 0: {
+                turSpillerIndex = 1;
+                break;
+            }
+            case 1: {
+                turSpillerIndex = 2;
+                break;
+            }
+            case 2: {
+                turSpillerIndex = 0;
+                break;
+            }
+        }
+
+    }
+
+    private static int flytSpiller(int indexFra, int flytAntal) {
+        for (int i = 0; i < flytAntal; i++) {
+            if (indexFra == 23) {
+                indexFra = 0;
+            } else {
+                indexFra++; // læg en til
+            }
+        }
+        return indexFra;
+    }
+
+    private static void landetPå(GUI_Player spiller, GUI_Field felt) {
+        if (felt.getClass() == GUI_Street.class) {
+            felt = (GUI_Street) felt;
+            spiller.setBalance(spiller.getBalance() - udregnPris(felt.getSubText()));
+
+        }
+    }
+
+    private static int udregnPris(String pris) {
+        String prisUdenM = String.valueOf(pris.charAt(1));
+        return Integer.parseInt(prisUdenM);
+    }
+}
 
 
 

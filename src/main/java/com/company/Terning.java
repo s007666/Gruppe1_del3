@@ -4,7 +4,7 @@ import java.util.Random;
 public class Terning {
     public final static int Sides = 6;
 
-    int RollTheDice() {
+    public int RollTheDice() {
         int x;
         Random Generator = new Random();
         x = Generator.nextInt(Sides) + 1;
