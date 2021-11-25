@@ -8,6 +8,7 @@ import java.awt.*;
 
 public class NySpilleplade {
     private static GUI_Player[] spillere;
+    //Index til tur
     private static int turSpillerIndex;
 
     public static void main(String[] args) {
@@ -42,8 +43,8 @@ public class NySpilleplade {
 
         GUI gui = new GUI(fields);
         FlytBil flytter = new FlytBil(gui, gui.getFields()[0]);
-        //ændre beskrivelserne til hvert felt
-        // start feltet
+        //Ændrer beskrivelserne til hvert felt
+        //Start feltet
         gui.getFields()[0].setTitle("START");
         gui.getFields()[0].setSubText("");
         gui.getFields()[0].setForeGroundColor(Color.BLACK);
@@ -211,8 +212,7 @@ public class NySpilleplade {
         gui.getFields()[23].setDescription("Du landede på strandpromenaden");
 
 
-//Opretter spiller og start balance på 2000
-        //GUI_Player player = new GUI_Player("Junior", 2000)
+//Opretter spiller og start balance på 18
         GUI_Car car1 = new GUI_Car(Color.BLUE, Color.BLACK, GUI_Car.Type.CAR, GUI_Car.Pattern.CHECKERED);
         GUI_Car car2 = new GUI_Car(Color.RED, Color.WHITE, GUI_Car.Type.RACECAR, GUI_Car.Pattern.CHECKERED);
         GUI_Car car3 = new GUI_Car(Color.GREEN, Color.ORANGE, GUI_Car.Type.UFO, GUI_Car.Pattern.CHECKERED);
@@ -258,6 +258,7 @@ public class NySpilleplade {
                     }
                     gui.getFields()[i].removeAllCars();
                 }
+                //Kører pladen rundt
                 spillerPositioner[turSpillerIndex] = flytSpiller(spillerPositioner[turSpillerIndex], ryk);
                 for (int i = 0; i < spillere.length; i++) {
                     gui.getFields()[spillerPositioner[i]].setCar(spillere[i], true);
@@ -276,6 +277,7 @@ public class NySpilleplade {
 
     }
 
+    //Spiller 1-3 skifter tur
     private static void giv_næste_spiller_turen() {
         switch (turSpillerIndex) {
             case 0: {
@@ -294,6 +296,7 @@ public class NySpilleplade {
 
     }
 
+    //Spiller ny omgang efter felt 23
     private static int flytSpiller(int indexFra, int flytAntal) {
         for (int i = 0; i < flytAntal; i++) {
             if (indexFra == 23) {
@@ -305,6 +308,7 @@ public class NySpilleplade {
         return indexFra;
     }
 
+    //Udregner sum/pris for at lande på felt
     private static void landetPå(GUI_Player spiller, GUI_Field felt) {
         if (felt.getClass() == GUI_Street.class) {
             felt = (GUI_Street) felt;
@@ -313,6 +317,7 @@ public class NySpilleplade {
         }
     }
 
+    //Fjerner M fra værdi
     private static int udregnPris(String pris) {
         String prisUdenM = String.valueOf(pris.charAt(1));
         return Integer.parseInt(prisUdenM);

@@ -10,6 +10,7 @@ public class PrisKonverteringsTest {
         String prisUdenM = String.valueOf(pris.charAt(1));
         return Integer.parseInt(prisUdenM);
     }
+    //Tester på pladen uden M
     @Test
     public void Konvertering(){
         int udregnetPris = udregnPris("M3");

@@ -1,2 +1,8 @@
 # Project exclude paths
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
 /out/

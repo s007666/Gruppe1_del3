@@ -10,7 +10,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="MatadorGUIGuide" target="14" />
       <module name="untitled104" target="14" />
+      <module name="v0.1.0" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
